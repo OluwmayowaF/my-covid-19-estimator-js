@@ -29,10 +29,8 @@ const covid19ImpactEstimator = (data) => {
   // Solution to Challenge three
   impact.casesForICUByRequestedTime = icuCases(impact.infectionsByRequestedTime);
   severeImpact.casesForICUByRequestedTime = icuCases(severeImpact.infectionsByRequestedTime);
-  const impactVent = vent(impact.infectionsByRequestedTime);
-  const severeImpactVent = vent(severeImpact.infectionsByRequestedTime);
-  impact.casesForVentilatorsByRequestedTime = Math.trunc(impactVent);
-  severeImpact.casesForVentilatorsByRequestedTime = Math.trunc(severeImpactVent);
+  impact.casesForVentilatorsByRequestedTime = vent(impact.infectionsByRequestedTime);
+  severeImpact.casesForVentilatorsByRequestedTime = vent(severeImpact.infectionsByRequestedTime);
   const days = normaliseDays(periodType, timeToElapse);
   const avgInc = avgDailyIncomePopulation * avgDailyIncomeInUSD * days;
   impact.dollarsInFlight = dollarFligth(impact.infectionsByRequestedTime, avgInc);
