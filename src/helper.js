@@ -40,5 +40,5 @@ export default {
   // Challenge 3 starts here
   icuCases: (infectionsByTime) => Math.trunc(infectionsByTime * (5 / 100)),
   vent: (infectionsByTime) => Math.trunc(infectionsByTime * (2 / 100)),
-  dollarFligth: (infectionsByTime, est, days) => +((infectionsByTime * est) / days).toFixed(2)
+  dollarFligth: (infectionsByTime, est, days) => Math.trunc(infectionsByTime * est) / days)
 };
