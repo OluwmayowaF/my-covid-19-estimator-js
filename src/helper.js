@@ -38,7 +38,7 @@ export default {
   severeCases: (infectionsByTime) => infectionsByTime * 0.15,
   bedsA: (estBed, severeCases) => Math.trunc(estBed - severeCases),
   // Challenge 3 starts here
-  icuCases: (infectionsByTime) => infectionsByTime * (5 / 100),
-  vent: (infectionsByTime) => infectionsByTime * (2 / 100),
-  dollarFligth: (infectionsByTime, estInc) => infectionsByTime * estInc
+  icuCases: (infectionsByTime) => Math.trunc(infectionsByTime * (5 / 100)),
+  vent: (infectionsByTime) => Math.trunc(infectionsByTime * (2 / 100)),
+  dollarFligth: (infectionsByTime, est, days) => +((infectionsByTime * est) / days).toFixed(2)
 };
