@@ -1,7 +1,7 @@
 import help from './helper';
 
 const {
-  bedsA, vent, severeCases, dollarFligth, icuCases
+  bedsA, vent, severeCases, dollarFligth, icuCases, normaliseDays
 } = help;
 
 const covid19ImpactEstimator = (data) => {
@@ -31,7 +31,7 @@ const covid19ImpactEstimator = (data) => {
   severeImpact.casesForICUByRequestedTime = icuCases(severeImpact.infectionsByRequestedTime);
   impact.casesForVentilatorsByRequestedTime = vent(impact.infectionsByRequestedTime);
   severeImpact.casesForVentilatorsByRequestedTime = vent(severeImpact.infectionsByRequestedTime);
-  const days = help.normaliseDays(periodType, timeToElapse);
+  const days = normaliseDays(periodType, timeToElapse);
   const avgInc = avgDailyIncomePopulation * avgDailyIncomeInUSD * days;
   impact.dollarsInFlight = dollarFligth(impact.infectionsByRequestedTime, avgInc);
   severeImpact.dollarsInFlight = dollarFligth(severeImpact.infectionsByRequestedTime, avgInc);
