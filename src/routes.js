@@ -47,6 +47,7 @@ router.get(`${baseUrl}/logs`, async (req, res) =>{
             console.log(err)
             return
         }
+        
         res.status(200).send(content)
     })
 })
