@@ -47,7 +47,7 @@ router.get(`${baseUrl}/logs`, async (req, res) => {
       return;
     }
 
-    res.status(200).send(content);
+    res.status(200).set('Content-Type', 'text/plain').send(content);
   });
 });
 
