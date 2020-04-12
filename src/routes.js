@@ -19,23 +19,23 @@ const logRequests = (content) => {
   });
 };
 router.post(`${baseUrl}`, async (req, res) => {
-  const { body } = req;
-  const estimate = await estimator(body);
+  const { data } = req.body;
+  const estimate = await estimator(data);
 
   res.status(200).send(estimate);
   const log = logBuild(req.method, req.path, res.statusCode, res.getHeader('X-Response-Time'));
   logRequests(log);
 });
 router.post(`${baseUrl}/json`, async (req, res) => {
-  const { body } = req;
-  const estimate = await estimator(body);
+  const { data } = req.body;
+  const estimate = await estimator(data);
   res.status(200).send(estimate);
   const log = logBuild(req.method, req.path, res.statusCode, res.getHeader('X-Response-Time'));
   logRequests(log);
 });
 router.post(`${baseUrl}/xml`, async (req, res) => {
-  const { body } = req;
-  const estimate = await estimator(body);
+  const { data } = req.body;
+  const estimate = await estimator(data);
   res.status(200).set('Content-Type', 'application/xml').send(jsonxml([estimate]));
   const log = logBuild(req.method, req.path, res.statusCode, res.getHeader('X-Response-Time'));
   logRequests(log);
