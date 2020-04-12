@@ -1,1 +1,1 @@
-web: node index.js NODE_ENV=development
+web: node index.js 
