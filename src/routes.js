@@ -26,9 +26,9 @@ router.post(`${baseUrl}/xml`, async (req, res) => {
   res.status(200).send(jsonxml([estimate]));
 });
 router.get(`${baseUrl}/logs`, async (req, res) => {
-   fs.readFile('requestlog.txt', (err, content) => {
+  fs.readFile('requestlog.txt', (err, content) => {
     if (err) {
-      console.log(err);
+      // console.log(err);
       return;
     }
     res.header('Content-Type', 'text/plain; charset=UTF-8');

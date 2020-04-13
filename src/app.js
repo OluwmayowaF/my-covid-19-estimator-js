@@ -2,7 +2,7 @@ import express from 'express';
 import 'express-async-errors';
 import bodyParser from 'body-parser';
 import cors from 'cors';
-import requestLogger from './loggerMid'
+import requestLogger from './loggerMid';
 import routes from './routes';
 
 const app = express();

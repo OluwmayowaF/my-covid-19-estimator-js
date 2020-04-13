@@ -21,8 +21,7 @@ const requestLogger = (request, response, next) => {
 
   fs.writeFile('requestlog.txt', content + os.EOL, { flag: 'a+' }, (err) => {
     if (err) {
-      console.log(err);
-      return;
+      // console.log(err);
     }
   });
   next();
