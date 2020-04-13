@@ -41,7 +41,7 @@ router.post(`${baseUrl}/xml`, async (req, res) => {
   logRequests(log);
 });
 router.get(`${baseUrl}/logs`, async (req, res) => {
-  const log = logBuild(req.method, req.path, res.statusCode, `05ms`);
+  const log = logBuild(req.method, req.path, res.statusCode, '05ms');
   logRequests(log);
   fs.readFile('requestlog.txt', (err, content) => {
     if (err) {
