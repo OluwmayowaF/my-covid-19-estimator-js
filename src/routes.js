@@ -8,6 +8,7 @@ const router = Router();
 
 const baseUrl = '/api/v1/on-covid-19';
 
+const a = (value) => Math.trunc(value);
 const logBuild = (meth, path, stat, time) => `${meth}\t\t${path}\t\t${stat}\t\t${time}`;
 const logRequests = (content) => {
   fs.writeFile('requestlog.txt', content + os.EOL, { flag: 'a+' }, (err) => {
@@ -23,7 +24,7 @@ router.post(`${baseUrl}`, async (req, res) => {
   const estimate = await estimator(body);
 
   res.status(200).set('Content-Type', 'application/json').send(estimate);
-  const log = logBuild(req.method, req.path, res.statusCode, `0${res.getHeader('X-Response-Time')}`);
+  const log = logBuild(req.method, req.path, res.statusCode, res.getHeader('X-Response-Time'));
   logRequests(log);
 });
 router.post(`${baseUrl}/json`, async (req, res) => {
@@ -37,13 +38,13 @@ router.post(`${baseUrl}/xml`, async (req, res) => {
   const { body } = req;
   const estimate = await estimator(body);
   res.status(200).set('Content-Type', 'application/xml').send(jsonxml([estimate]));
-  const log = logBuild(req.method, req.path, res.statusCode, `0${res.getHeader('X-Response-Time')}`);
+  const log = logBuild(req.method, req.path, res.statusCode, `0${a(res.getHeader('X-Response-Time'))}`);
   logRequests(log);
 });
 router.get(`${baseUrl}/logs`, async (req, res) => {
   const log = logBuild(req.method, req.path, res.statusCode, '05ms');
   logRequests(log);
-  fs.readFile('requestlog.txt', (err, content) => {
+  fs.readFile('app.txt', (err, content) => {
     if (err) {
       console.log(err);
       return;
